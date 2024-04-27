@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { Alert, StyleSheet, Text, ToastAndroid, TouchableOpacity, View } from 'react-native';
+import Toast from 'react-native-toast-message'
 
 export default function App() {
 
@@ -16,21 +17,26 @@ export default function App() {
   
   } else {
     //Alert.alert ("Impossível decrementar a partir desse ponto")
-    ToastAndroid.show("Impossível decrementar a partir deste ponto", ToastAndroid.SHORT);
+    // ToastAndroid.show("Impossível decrementar a partir deste ponto", ToastAndroid.SHORT);
+    showToast();
     return;
   }
 }
 
+function showToast() {
+    Toast.show({
+      type: 'error',
+      text1: "Aviso",
+      text2: "Impossível decrementar",
+      position: 'bottom',
+      bottomOffset: 20 
+    });
+}
 
 
   return (
   
-    function showtoast(){
-      Toast.show({
-        type: 'info',
-        text1: "Aviso",
-        text2: "Impossível decrementar"
-      })
+
     
     <View style={styles.container}>
 
@@ -54,6 +60,7 @@ export default function App() {
 </TouchableOpacity>
       <Text>Contador:{contador}</Text>
       <StatusBar style="auto" />
+      <Toast/>
     </View>
   );
 }
